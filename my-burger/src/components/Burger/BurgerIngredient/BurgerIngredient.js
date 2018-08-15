@@ -40,7 +40,7 @@
         }
     };
     
-    BurgerIngredient.PropTypes = {
+    BurgerIngredient.propTypes = {
         type: PropTypes.string.isRequired
     };
 
