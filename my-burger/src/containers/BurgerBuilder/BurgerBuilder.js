@@ -93,7 +93,7 @@ class BurgerBuilder extends Component {
         const oldPrice = this.state.totalPrice;
         const newPrice = oldPrice + priceAddition;
         this.setState({
-            totalPrice: newPrice,
+            totalPrice: (Math.round(newPrice*100)/100),
             ingredients: updatedIngredients
         });
         this.updatePurchaseState(updatedIngredients);
@@ -111,7 +111,7 @@ class BurgerBuilder extends Component {
         const oldPrice = this.state.totalPrice;
         const newPrice = oldPrice - priceDeduction;
         this.setState({
-            totalPrice: newPrice,
+            totalPrice: (Math.round(newPrice*100)/100),
             ingredients: updatedIngredients
         });
         this.updatePurchaseState(updatedIngredients);
@@ -142,6 +142,7 @@ class BurgerBuilder extends Component {
                         purchasing = {this.purchaseHandler}/>
                 </Aux>
             );
+            
             orderSummary = <OrderSummary 
                 ingredients={this.state.ingredients}
                 purchaseCancelled={this.purchaseCancelHandler}
@@ -150,6 +151,8 @@ class BurgerBuilder extends Component {
             if (this.state.loading) { 
                 orderSummary = <Spinner />;
             };
+            
+ 
         }
 
         return (

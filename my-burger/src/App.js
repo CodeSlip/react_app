@@ -6,20 +6,27 @@ import BurgerBuilder from "./containers/BurgerBuilder/BurgerBuilder";
 
 class App extends Component {
 
-  state = {
-    show: true
-  }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({show:false});}, 5000);
-  }
+//Example of a pre-set timeout error
+
+  // state = {
+  //   show: true
+  // }
+
+  // componentDidMount() {
+  //   setTimeout(() => {
+  //     this.setState({show:false});}, 5000);
+  // }
+
+//   <Layout>
+//   {this.state.show ? <BurgerBuilder/> : null}
+//  </Layout>
 
   render() {
     return (
       <div className="App">
         <Layout>
-          {this.state.show ? <BurgerBuilder/> : null}
+          <BurgerBuilder />
         </Layout>
       </div>
     );
