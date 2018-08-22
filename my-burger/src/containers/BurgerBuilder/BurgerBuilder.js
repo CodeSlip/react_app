@@ -7,6 +7,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import axios from '../../axios-orders';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrordHandler from '../../hoc/withErrorHandler/withErrorHandler';
+// import Checkout from '../Checkout/Checkout';
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -33,7 +34,7 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount = () => {
-        axios.get("https://burgerbuilder-9473e.firebaseio.com/orders/ingredients.json")
+        axios.get("https://burgerbuilder-9473e.firebaseio.com/Orders/ingredients.json")
             .then(response => {
                 this.setState({ingredients: response.data})
             })
@@ -47,27 +48,16 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        this.setState({loading: true});
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice    ,
-            customer: {
-                name: 'Jason',
-                address: '2022',
-                street: 'Cobbler St',
-                zip: '19045',
-                country: 'USA',
-                email: 'jamboree22@yahoo.com'
-            },
-            deliveryMethod: 'fastest'
-        };
-        axios.post('/orders.json', order)
-            .then( response => {
-                this.setState({ loading: false, purchasing: false })
-            })
-            .catch( error => {
-                this.setState({ loading: false, purchasing: false })
-            });
+        const queryParams = [];
+        for (let i in this.state.ingredients) {
+            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
+        }
+        queryParams.push('price='+ this.state.totalPrice);
+        const queryString = queryParams.join('&');
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString 
+        });
     }
 
     purchaseHandler = () => {
