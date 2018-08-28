@@ -11,7 +11,7 @@ class Orders extends Component {
     }
 
     componentDidMount() {
-        axios.get('/Orders.json')
+        axios.get('/')
             .then(res => {
             const fetchedOrders = [];
             for (let key in res.data) {
