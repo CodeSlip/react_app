@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { Component } from 'react';
+import { Router, connect } from 'react-redux';
 import './App.css';
 import Layout from "./hoc/Layout/Layout";
 import asyncComponent from './hoc/asyncComponent/asyncComponent';
