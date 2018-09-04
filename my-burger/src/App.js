@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Router, connect } from 'react-redux';
 import './App.css';
 import Layout from "./hoc/Layout/Layout";
@@ -70,5 +70,5 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(App));
 //by wrapping connect with withRouter, I can make sure I'm passing my props down to the next level
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(App));
